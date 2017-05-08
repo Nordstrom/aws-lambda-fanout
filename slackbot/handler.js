@@ -1,9 +1,9 @@
 const querystring = require('querystring');
 const AWS = require('aws-sdk');
 
-const streamArnRegEx = /^arn:aws:kinesis:[a-z0-9\-]*:[0-9]{12}:stream\/(.*Stream)$/;
-const uniqueIdRegEx = /^arn:aws:kinesis:[a-z0-9\-]*:[0-9]{12}:stream\/(.*)Stream$/;
-const roleArnRegEx = /^arn:aws:iam::[0-9]{12}:role\/.*StreamWriter$/;
+const streamArnRegEx = /^arn:aws:kinesis:[a-zA-Z0-9\-]*:[0-9]{12}:stream\/([a-zA-Z0-9\-]{4}Stream)$/;
+const uniqueIdRegEx = /^arn:aws:kinesis:[a-zA-Z0-9\-]*:[0-9]{12}:stream\/([a-zA-Z0-9\-]{4})Stream$/;
+const roleArnRegEx = /^arn:aws:iam::[0-9]{12}:role\/[a-zA-Z0-9\-]{4}StreamWriter$/;
 
 AWS.config.update({
     region: process.env.CORE_STREAM_REGION
