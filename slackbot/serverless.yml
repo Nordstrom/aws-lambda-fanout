@@ -1,7 +1,8 @@
 service: hello-retail-slackbot
 
 custom:
-  coreAccount: 515126931066
+  private: ${file(../private.yml)}
+  coreAccount: ${self:custom.private.AwsAccountNumber}
   coreRegion: us-west-2
   coreStage: workshop050417
   fanoutTable: fanoutTargets

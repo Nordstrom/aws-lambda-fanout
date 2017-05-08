@@ -127,7 +127,6 @@ function unregisterStreamForFanOut(streamArn) {
     const dynamoDb = new AWS.DynamoDB();
     const retailStreamArn = getRetailStreamArn();
     const id = extractUniqueIdFromStreamArn(streamArn);
-    const destination = extractStreamName(streamArn);
 
     const keys = {
         'sourceArn': { 'S': retailStreamArn },
