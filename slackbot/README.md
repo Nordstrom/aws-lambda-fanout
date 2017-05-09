@@ -66,6 +66,7 @@ Finally, we just need to create the commands in your Slack app and link those co
 On the **Basic Information** screen of your app in the [Slack API](https://api.slack.com/) site, click **Features -> Slash Commands**, where you'll enter
  the following two commands:
 
+---
 Command: `/hook-stream`
 
 Request URL: `https://blahxxblah.execute-api.us-west-2.amazonaws.com/myAutoBot/slack/hookstream`
@@ -74,7 +75,7 @@ Short Description: `Adds a stream to the Hello-Retail workshop.`
 
 Usage Hint: `[writer role ARN] [stream kinesis ARN]`
 
-
+---
 Command: `/unhook-stream`
 
 Request URL: `https://blahxxblah.execute-api.us-west-2.amazonaws.com/myAutoBot/slack/unhookstream`
@@ -83,6 +84,7 @@ Short Description: `Removes a stream from the Hello-Retail workshop.`
 
 Usage Hint: `[stream kinesis ARN]`
 
+---
 Once those commands are Saved, the commands should now work as expected in Slack.
 
 # Important Notes
