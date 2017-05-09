@@ -1,7 +1,12 @@
 # Slack Command to Add Student Streams
 
 Allows students in the workshop to hook and unhook their streams from
- the fan-out Lmabda via Slack slash commands.
+ the fan-out Lambda via Slack slash commands.
+
+In the workshops we run, the student's ID is restricted to a four character alpha-numeric string (e.g. `3dq1`; also
+referred to as `stage`) and names match `${stage}Stream` and `${stage}StreamWriter` for
+their kinesis stream and writer role respectively. See notes at the end of this readme
+on how to adjust these restrictions.
 
 To add a student stream to the fan-out:
 
@@ -9,7 +14,7 @@ To add a student stream to the fan-out:
 /hook-stream arn:aws:iam::123456789012:role/0a1bStreamWriter arn:aws:kinesis:us-west-2:123456789012:stream/0a1bStream
 ```
 
-then, after the workshop is complete, **before** deleting the stream:
+then, after the workshop is complete, _**before**_ deleting the stream:
 
 ```
 /unhook-stream arn:aws:kinesis:us-west-2:123456789012:stream/0a1bStream
@@ -87,7 +92,9 @@ Usage Hint: `[stream kinesis ARN]`
 ---
 Once those commands are Saved, the commands should now work as expected in Slack.
 
-# Important Notes
+# Notes
+
+## How to change student AWS resource name restrictions
 
 Currently the student streams and roles are restricted to _exactly four alphanumeric_ character long custom IDs,
  `????Stream` and `????StreamWriter`. So `a907Stream` and `a907StreamWriter` are examples of acceptable
