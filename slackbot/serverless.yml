@@ -27,6 +27,7 @@ functions:
       CORE_STREAM_REGION: ${self:custom.coreRegion}
       CORE_STREAM_ACCOUNT: ${self:custom.coreAccount}
       FANOUT_TABLE_NAME: ${self:custom.fanoutTable}
+      SLACK_VERIFICATION_TOKEN: ${self:custom.private.SlackVerificationToken}
     events:
       - http:
           path: slack/hookstream
@@ -40,6 +41,7 @@ functions:
       CORE_STREAM_REGION: ${self:custom.coreRegion}
       CORE_STREAM_ACCOUNT: ${self:custom.coreAccount}
       FANOUT_TABLE_NAME: ${self:custom.fanoutTable}
+      SLACK_VERIFICATION_TOKEN: ${self:custom.private.SlackVerificationToken}
     events:
       - http:
           path: slack/unhookstream

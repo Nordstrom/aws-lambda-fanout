@@ -44,6 +44,9 @@ function handleSlackbotMessage(streamAction, event, callback) {
     } else if(!process.env.HELLO_RETAIL_STAGE) {
         // HELLO_RETAIL_STAGE set to the stage name for the workshop, e.g. 'workshop050217' or 'austin'
         message = 'Invalid deployment of this Lambda: HELLO_RETAIL_STAGE must be set.'
+    } else if(query.token != process.env.SLACK_VERIFICATION_TOKEN) {
+        // SLACK_VERIFICATION_TOKEN is a shared secret from the Slack App.
+        message = `Unauthorized.`
     } else {
         message = streamAction(args, query);
     }
