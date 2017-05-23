@@ -9,6 +9,7 @@
     }, 
     "dependencies": {
         "aws-kinesis-agg": "2.2.2",
+        "aws-xray-sdk": "^1.1.1",
         "async": "1.5.2"
     }, 
     "description": "An Amazon Kinesis Streams and Amazon DynamoDB Streams pipeline written for AWS Lambda", 

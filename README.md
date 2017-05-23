@@ -365,3 +365,35 @@ or in the "license" file accompanying this file. This file is
 distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 ANY KIND, either express or implied. See the License for the specific
 language governing permissions and limitations under the License.
+
+
+---
+
+### BRANCH: aws-xray
+
+The code changes in the branch effectively instruments the lambdas in the fan-out Lambda
+ by wrapping the `aws` requirements with the `aws-xray-sdk` which forwards the AWS trace ID to the
+ other AWS services so their telemetry is included in the X-Ray Trace.
+
+> ### NOTE: This feature is in _preview_ for Lambda
+> There does not appear to be support for CloudFormation to define a Lambda with *Active Tracing* enabled,
+ so for each Lambda for which tracing information is desired, will need to be enabled in the AWS Console
+ under *Configuration -> Advanced Settings -> AWS X-Ray -> Enable Active Tracing*.
+
+> The first time this change is made to a Lambda, the following message is displayed in the console
+```
+When you save your function with active tracing enabled, Lambda will automatically add permissions:
+"xray:PutTraceSegments", "xray:PutTelemetryRecords"
+to the function's current role if it does not have necessary permissions.
+```
+and when the *Save* button is clicked, there is an error message:
+```
+The Configuration tab failed to save. Reason: The provided execution role does not have permissions to call PutTraceSegments on XRAY
+```
+and the user is required to wait 30-60 seconds, click the *Save* button again, and the Lambda will save successfully
+with the changes made according to the first message by adding a policy named like `AWSLambdaTracerAccessExecutionRole-XXXXXXXXX` to
+the Lambda's role.
+
+#### TODO:
+
+ * Add `xray:PutTraceSegments` and `xray:PutTelemetryRecords` to appropriate roles in this branch.
